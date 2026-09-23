@@ -126,6 +126,10 @@ p {
 	color: #fff;
 }
 
+.btn.quiz-next {
+	margin-top: 10px;
+}
+
 .site-header {
 	position: sticky;
 	top: 0;
