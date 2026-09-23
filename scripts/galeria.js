@@ -195,9 +195,7 @@
 							decoding="async"
 						/>
 
-						<div class="galeria-modulo__overlay" aria-hidden="true">
-							<span class="galeria-modulo__zoom-icon">+</span>
-						</div>
+						<div class="galeria-modulo__overlay" aria-hidden="true"></div>
 					</div>
 
 					<div class="galeria-modulo__caption">

@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				return;
 			}
 			message.textContent =
-				'Mensaje enviado correctamente. Esta demo no conecta con un servidor real.';
+				'Mensaje enviado correctamente.';
 			message.classList.add('show');
 			form.reset();
 		});
@@ -254,19 +254,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	if (!mapElement || typeof L === 'undefined') return;
 
-	const officeCoordinates = [40.4168, -3.7038];
+	const officeCoordinates = [-34.640653606207266, -58.60191273325016];
 
 	const map = L.map(mapElement, {
 		scrollWheelZoom: true,
 		zoomControl: true,
-	}).setView(officeCoordinates, 13);
+	}).setView(officeCoordinates, 16);
 
 	L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-		maxZoom: 19,
+		maxZoom: 20,
 		attribution: '&copy; OpenStreetMap contributors',
 	}).addTo(map);
 
-	L.marker(officeCoordinates)
+	const customMarker = L.icon({
+		iconUrl: 'assets/images/marker.webp',
+		iconSize: [25, 25],
+		popupAnchor: [0 , -15],
+	});
+
+	L.marker(officeCoordinates, { icon: customMarker })
 		.addTo(map)
 		.bindPopup('<strong>Oficina</strong><br>La Posada del Lobo')
 		.openPopup();
