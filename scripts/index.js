@@ -106,64 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 
 	// ---------------------------
-	// Modal de galería
-	// ---------------------------
-	const galleryItems = [...document.querySelectorAll('.gallery-item')];
-	const modal = document.querySelector('.gallery-modal');
-	if (modal && galleryItems.length) {
-		const modalVisual = modal.querySelector('.modal-visual');
-		const modalTitle = modal.querySelector('.modal-title');
-		const modalDesc = modal.querySelector('.modal-desc');
-		const modalCounter = modal.querySelector('.modal-counter');
-		let current = 0;
-
-		const renderModal = () => {
-			const item = galleryItems[current];
-			modalVisual.innerHTML = item.dataset.visual || 'PLACEHOLDER VISUAL';
-			modalTitle.textContent = item.dataset.title || 'Imagen';
-			modalDesc.textContent = item.dataset.description || '';
-			modalCounter.textContent = `${current + 1}/${galleryItems.length}`;
-		};
-
-		const openModal = (index) => {
-			current = index;
-			renderModal();
-			modal.classList.add('open');
-			document.body.style.overflow = 'hidden';
-		};
-		const closeModal = () => {
-			modal.classList.remove('open');
-			document.body.style.overflow = '';
-		};
-		const next = () => {
-			current = (current + 1) % galleryItems.length;
-			renderModal();
-		};
-		const prev = () => {
-			current = (current - 1 + galleryItems.length) % galleryItems.length;
-			renderModal();
-		};
-
-		galleryItems.forEach((item, index) =>
-			item.addEventListener('click', () => openModal(index)),
-		);
-		modal
-			.querySelector('.modal-close')
-			?.addEventListener('click', closeModal);
-		modal.querySelector('.modal-next')?.addEventListener('click', next);
-		modal.querySelector('.modal-prev')?.addEventListener('click', prev);
-		modal.addEventListener('click', (e) => {
-			if (e.target === modal) closeModal();
-		});
-		document.addEventListener('keydown', (e) => {
-			if (!modal.classList.contains('open')) return;
-			if (e.key === 'Escape') closeModal();
-			if (e.key === 'ArrowRight') next();
-			if (e.key === 'ArrowLeft') prev();
-		});
-	}
-
-	// ---------------------------
 	// Acordeón de noticias
 	// ---------------------------
 	document.querySelectorAll('.news-toggle').forEach((button) => {
